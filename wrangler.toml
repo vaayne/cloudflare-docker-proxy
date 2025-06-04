@@ -1,13 +1,15 @@
 name = "cloudflare-docker-proxy"
 compatibility_date = "2023-12-01"
 
+main = "src/index.js"
+
 [dev]
 ip = "0.0.0.0"
 port = 8787
 local_protocol = "http"
 
-[env.vars]
-CUSTOM_DOMAIN = "libcuda.so"
+[vars]
+CUSTOM_DOMAIN = "docker.vaayne.com"
 
 [env.dev.vars]
 MODE = "debug"
@@ -16,23 +18,24 @@ CUSTOM_DOMAIN = "exmaple.com"
 
 [env.production]
 name = "cloudflare-docker-proxy"
-# routes = [
-#   { pattern = "docker.libcuda.so", custom_domain = true },
-#   { pattern = "quay.libcuda.so", custom_domain = true },
-#   { pattern = "gcr.libcuda.so", custom_domain = true },
-#   { pattern = "k8s-gcr.libcuda.so", custom_domain = true },
-#   { pattern = "k8s.libcuda.so", custom_domain = true },
-#   { pattern = "ghcr.libcuda.so", custom_domain = true },
-#   { pattern = "cloudsmith.libcuda.so", custom_domain = true },
-# ]
+routes = [
+    { pattern = "docker.docker.vaayne.com", custom_domain = true },
+    { pattern = "quay.docker.vaayne.com", custom_domain = true },
+    { pattern = "gcr.docker.vaayne.com", custom_domain = true },
+    { pattern = "k8s-gcr.docker.vaayne.com", custom_domain = true },
+    { pattern = "k8s.docker.vaayne.com", custom_domain = true },
+    { pattern = "ghcr.docker.vaayne.com", custom_domain = true },
+    { pattern = "cloudsmith.docker.vaayne.com", custom_domain = true },
+]
 
 [env.production.vars]
 MODE = "production"
 TARGET_UPSTREAM = ""
+CUSTOM_DOMAIN = "docker.vaayne.com"
 
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
-# route = { pattern = "docker-staging.libcuda.so", custom_domain = true }
+# route = { pattern = "docker-staging.docker.vaayne.com", custom_domain = true }
 
 [env.staging.vars]
 MODE = "staging"
